@@ -1,4 +1,4 @@
-Q1) ## type of triangle
+## type of triangle
 Write a query identifying the type of each record in the TRIANGLES table using its three side lengths. Output one of the following statements for each record in the table:
 Equilateral: It's a triangle with 3 sides of equal length.
 Isosceles: It's a triangle with 2 sides of equal length.
@@ -10,7 +10,7 @@ SELECT IF(A + B <= C OR B + C <= A OR C + A <= B,"Not A Triangle",
          IF(A = B OR B = C OR C = A,"Isosceles","Scalene")))
 FROM TRIANGLES AS T;       
 ```
-Q2) ## the PADS 
+## the PADS 
 (a) Query an alphabetically ordered list of all names in OCCUPATIONS, immediately followed by the first letter of each profession as a parenthetical (i.e.: enclosed in parentheses). For example: AnActorName(A), ADoctorName(D), AProfessorName(P), and ASingerName(S).
 (b) Query the number of ocurrences of each occupation in OCCUPATIONS. Sort the occurrences in ascending order, and output them in the following format:
 There are a total of [occupation_count] [occupation]s. where [occupation_count] is the number of occurrences of an occupation in OCCUPATIONS and [occupation] is the lowercase occupation name. If more than one Occupation has the same [occupation_count], they should be ordered alphabetically.
@@ -24,7 +24,7 @@ from occupations
 group by occupation
 order by totals;
 ```
-Q3) ## occupations 
+## occupations 
 Pivot the Occupation column in OCCUPATIONS so that each Name is sorted alphabetically and displayed underneath its corresponding Occupation. The output column headers should be Doctor, Professor, Singer, and Actor, respectively.
 Note: Print NULL when there are no more names corresponding to an occupation.
 ```sql
@@ -50,7 +50,7 @@ RIGHT JOIN (
     WHERE Occupation = 'Professor' ORDER BY Name
 ) AS P ON D.rownum = P.rownumP LEFT JOIN (SELECT @rownumS:=@rownumS+1 AS rownumS, Name FROM (SELECT @rownumS:=0) r, Occupations WHERE Occupation = 'Singer' ORDER BY Name) AS S ON P.rownumP = S.rownumS LEFT JOIN (SELECT @rownumA:=@rownumA+1 AS rownumA, Name FROM (SELECT @rownumA:=0) r, Occupations WHERE Occupation = 'Actor' ORDER BY Name) AS A ON P.rownumP = A.rownumA;
 ```
-Q4) ## new companies
+## new companies
 Given the table schemas below, write a query to print the company_code, founder name, total number of lead managers, total number of senior managers, total number of managers, and total number of employees. Order your output by ascending company_code.
 The tables may contain duplicate records.
 The company_code is string, so the sorting should not be numeric. For example, if the company_codes are C_1, C_2, and C_10, then the ascending company_codes will be C_1, C_10, and C_2.
@@ -70,7 +70,7 @@ left join Employee E on E.manager_code = M.manager_code
 group by C.company_code
 order by C.company_code;
 ```
-Q5) ## binary tree nodes
+## binary tree nodes
 Write a query to find the node type of Binary Tree ordered by the value of the node. Output one of the following for each node:
 Root: If node is root node.
 Leaf: If node is leaf node.
